@@ -119,7 +119,7 @@ def input_columns(
         #     [config["datasets"][load_options["dataset"]]["target"]],
         #     help=readme["tooltips"]["target_column"],
         # )
-        target_col = st.selectbox('Target Column')
+        target_col = st.selectbox("Target column",'Target Column',help=readme["tooltips"]["target_column"])
     else:
         date_col = st.selectbox(
             "Date column",
