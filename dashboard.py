@@ -84,9 +84,9 @@ with st.sidebar.expander("Dataset", expanded=True):
         print_empty_cols(empty_cols)
 # load_data()
 # Column names
-with st.sidebar.expander("Columns", expanded=True):
-    date_col, target_col = input_columns(config, readme, df, load_options)
-    df = format_date_and_target(df, date_col, target_col, config, load_options)
+# with st.sidebar.expander("Columns", expanded=True):
+date_col, target_col = input_columns(config, readme, df, load_options)
+df = format_date_and_target(df, date_col, target_col, config, load_options)
 
 # Filtering
 with st.sidebar.expander("Filtering", expanded=False):
