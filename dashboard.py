@@ -52,10 +52,12 @@ from streamlit_prophet.lib.utils.load import load_config, load_image
 st.set_page_config(page_title="Prophet", layout="wide")
 
 # Load config
-config, instructions, readme = load_config(
-    "config_streamlit.toml", "config_instructions.toml", "config_readme.toml"
-)
-
+st.cache 
+def load_config():
+    config, instructions, readme = load_config(
+        "config_streamlit.toml", "config_instructions.toml", "config_readme.toml"
+    )
+config, instructions, readme =load_config()
 # Initialization
 dates: Dict[Any, Any] = dict()
 report: List[Dict[str, Any]] = []
@@ -74,11 +76,13 @@ st.sidebar.image(load_image("logo.png"), use_column_width=True)
 st.sidebar.title("1. Data")
 
 # Load data
-with st.sidebar.expander("Dataset", expanded=True):
-    df, load_options, config, datasets = input_dataset(config, readme, instructions)
-    df, empty_cols = remove_empty_cols(df)
-    print_empty_cols(empty_cols)
-
+st.cache 
+def load_data():
+    with st.sidebar.expander("Dataset", expanded=True):
+        df, load_options, config, datasets = input_dataset(config, readme, instructions)
+        df, empty_cols = remove_empty_cols(df)
+        print_empty_cols(empty_cols)
+load_data()
 # Column names
 with st.sidebar.expander("Columns", expanded=True):
     date_col, target_col = input_columns(config, readme, df, load_options)
