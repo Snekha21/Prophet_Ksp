@@ -3,3 +3,4 @@ cmake
 vacances-scolaires-france
 plotly
 prophet
+scipy
