@@ -3,17 +3,17 @@
 name = "Police Patrol"
 url = "https://raw.githubusercontent.com/MaximeLutel/streamlit_prophet_datasets/main/retail_sales.csv"
 date = "date"
-target = "Patrol Cars"
+target = "sales"
 [datasets.House]
 name = "Crime Rate"
 url = "https://raw.githubusercontent.com/MaximeLutel/streamlit_prophet_datasets/main/house_sales.csv"
 date = "date"
-target = "Crime Rate"
+target = "houses_sold"
 [datasets.Energy]
 name = "Resources consumption"
 url = "https://raw.githubusercontent.com/MaximeLutel/streamlit_prophet_datasets/main/energy.csv"
 date = "Date"
-target = "Police resources used"
+target = "Global_reactive_power"
 [datasets.Weather]
 name = "Weather"
 url = "https://raw.githubusercontent.com/MaximeLutel/streamlit_prophet_datasets/main/weather.csv"
@@ -23,7 +23,7 @@ target = "temperature"
 name = "Accidents Rate"
 url = "https://raw.githubusercontent.com/MaximeLutel/streamlit_prophet_datasets/main/corn_price.csv"
 date = "week"
-target = "Accidents"
+target = "corn_price"
 
 [columns]
 date = false # Name of date column, choose false to select it directly in the app.
