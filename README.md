@@ -37,8 +37,6 @@ Now you can train, evaluate and optimize forecasting models in a few clicks.
 All you have to do is to upload a time series dataset. 
 This dataset should be a csv file that contains a date column, a target column and optionally some features, like on the example below:
 
-![](streamlit_prophet/references/input_format.png)
-
 Then, follow the guidelines in the sidebar to:
 
 * <strong>Prepare data</strong>: Filter, aggregate, resample and/or clean your dataset.
