@@ -108,34 +108,48 @@ def input_columns(
     str
         Target column name.
     """
+    # if load_options["toy_dataset"]:
+    #     date_col = st.selectbox(
+    #         "Date column",
+    #         [config["datasets"][load_options["dataset"]]["date"]],
+    #         help=readme["tooltips"]["date_column"],
+    #     )
+    #     target_col = st.selectbox(
+    #         "Target column",
+    #         [config["datasets"][load_options["dataset"]]["target"]],
+    #         help=readme["tooltips"]["target_column"],
+    #     )
+    #     # target_col = st.selectbox("Target column",'Target Column',help=readme["tooltips"]["target_column"])
+    # else:
+    #     date_col = st.selectbox(
+    #         "Date column",
+    #         sorted(df.columns)
+    #         if config["columns"]["date"] in ["false", False]
+    #         else [config["columns"]["date"]],
+    #         help=readme["tooltips"]["date_column"],
+    #     )
+    #     target_col = st.selectbox(
+    #         "Target column",
+    #         sorted(set(df.columns) - {date_col})
+    #         if config["columns"]["target"] in ["false", False]
+    #         else [config["columns"]["target"]],
+    #         help=readme["tooltips"]["target_column"],
+    #     )
     if load_options["toy_dataset"]:
-        date_col = st.selectbox(
-            "Date column",
-            [config["datasets"][load_options["dataset"]]["date"]],
-            help=readme["tooltips"]["date_column"],
-        )
-        target_col = st.selectbox(
-            "Target column",
-            [config["datasets"][load_options["dataset"]]["target"]],
-            help=readme["tooltips"]["target_column"],
-        )
-        # target_col = st.selectbox("Target column",'Target Column',help=readme["tooltips"]["target_column"])
+        date_col = config["datasets"][load_options["dataset"]]["date"]
+        target_col = config["datasets"][load_options["dataset"]]["target"]
     else:
-        date_col = st.selectbox(
-            "Date column",
-            sorted(df.columns)
-            if config["columns"]["date"] in ["false", False]
-            else [config["columns"]["date"]],
-            help=readme["tooltips"]["date_column"],
-        )
-        target_col = st.selectbox(
-            "Target column",
-            sorted(set(df.columns) - {date_col})
-            if config["columns"]["target"] in ["false", False]
-            else [config["columns"]["target"]],
-            help=readme["tooltips"]["target_column"],
-        )
+        if config["columns"]["date"] in ["false", False]:
+            date_col = sorted(df.columns)[0]  # Assign the first sorted column, change logic if needed
+        else:
+            date_col = config["columns"]["date"]
+        
+        if config["columns"]["target"] in ["false", False]:
+            target_col = sorted(set(df.columns) - {date_col})[0]  # Assign the first sorted column, change logic if needed
+        else:
+            target_col = config["columns"]["target"]
     return date_col, target_col
+
 
 
 def input_future_regressors(
