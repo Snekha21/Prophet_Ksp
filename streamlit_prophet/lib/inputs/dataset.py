@@ -114,11 +114,12 @@ def input_columns(
             [config["datasets"][load_options["dataset"]]["date"]],
             help=readme["tooltips"]["date_column"],
         )
-        target_col = st.selectbox(
-            "Target column",
-            [config["datasets"][load_options["dataset"]]["target"]],
-            help=readme["tooltips"]["target_column"],
-        )
+        # target_col = st.selectbox(
+        #     "Target column",
+        #     [config["datasets"][load_options["dataset"]]["target"]],
+        #     help=readme["tooltips"]["target_column"],
+        # )
+        target_col = st.selectbox('Target Column')
     else:
         date_col = st.selectbox(
             "Date column",
