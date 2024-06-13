@@ -52,12 +52,10 @@ from streamlit_prophet.lib.utils.load import load_config, load_image
 st.set_page_config(page_title="Prophet", layout="wide")
 
 # Load config
-# st.cache 
-# def load_config():
 config, instructions, readme = load_config(
-        "config_streamlit.toml", "config_instructions.toml", "config_readme.toml"
-    )
-# config, instructions, readme =load_config()
+    "config_streamlit.toml", "config_instructions.toml", "config_readme.toml"
+)
+
 # Initialization
 dates: Dict[Any, Any] = dict()
 report: List[Dict[str, Any]] = []
@@ -70,19 +68,15 @@ with st.expander(
     st.write("")
 st.write("")
 st.sidebar.image(load_image("logo.png"), use_column_width=True)
-# display_links(readme["links"]["repo"], readme["links"]["article"])
-
 
 st.sidebar.title("1. Data")
 
 # Load data
-# st.cache 
-# def load_data():
 with st.sidebar.expander("Dataset", expanded=True):
-        df, load_options, config, datasets = input_dataset(config, readme, instructions)
-        df, empty_cols = remove_empty_cols(df)
-        print_empty_cols(empty_cols)
-# load_data()
+    df, load_options, config, datasets = input_dataset(config, readme, instructions)
+    df, empty_cols = remove_empty_cols(df)
+    print_empty_cols(empty_cols)
+
 # Column names
 with st.sidebar.expander("Columns", expanded=True):
     date_col, target_col = input_columns(config, readme, df, load_options)
@@ -178,18 +172,7 @@ if make_future_forecast:
         )
 
 # Launch training & forecast
-if st.checkbox(
-    "Launch forecast",
-    value=False,
-    help=readme["tooltips"]["launch_forecast"],
-):
-
-    if not (evaluate | make_future_forecast):
-        st.error("Please check at least 'Evaluation' or 'Forecast' in the sidebar.")
-
-    track_experiments = st.checkbox(
-        "Track experiments", value=False, help=readme["tooltips"]["track_experiments"]
-    )
+if evaluate or make_future_forecast:
 
     datasets, models, forecasts = forecast_workflow(
         config,
@@ -210,7 +193,7 @@ if st.checkbox(
 
     # Visualizations
 
-    if evaluate | make_future_forecast:
+    if evaluate or make_future_forecast:
         st.write("# 1. Overview")
         report = plot_overview(
             make_future_forecast, use_cv, models, forecasts, target_col, cleaning, readme, report
@@ -224,7 +207,7 @@ if st.checkbox(
             use_cv, target_col, datasets, forecasts, dates, eval, resampling, config, readme, report
         )
 
-    if evaluate | make_future_forecast:
+    if evaluate or make_future_forecast:
         st.write(
             "# 3. Impact of components and regressors"
             if evaluate
@@ -249,18 +232,17 @@ if st.checkbox(
         report = plot_future(models, forecasts, dates, target_col, cleaning, readme, report)
 
     # Save experiment
-    if track_experiments:
-        display_save_experiment_button(
-            report,
-            config,
-            use_cv,
-            make_future_forecast,
-            evaluate,
-            cleaning,
-            resampling,
-            params,
-            dates,
-            date_col,
-            target_col,
-            dimensions,
-        )
+    display_save_experiment_button(
+        report,
+        config,
+        use_cv,
+        make_future_forecast,
+        evaluate,
+        cleaning,
+        resampling,
+        params,
+        dates,
+        date_col,
+        target_col,
+        dimensions,
+    )
