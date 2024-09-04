@@ -4,3 +4,4 @@ vacances-scolaires-france
 plotly
 prophet
 scipy
+numpy == 1.26.4
