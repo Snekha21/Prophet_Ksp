@@ -1,7 +1,9 @@
 
 
 ![Streamlit Prophet](streamlit_prophet/references/logo.png)
+<br>
 A Live Analytics tool for the  police
+<br>
 Features:
 
  -Analyzing patrols
@@ -9,7 +11,7 @@ Features:
  -Accidents
  -Crime rates
  -Weather
-
+<br>
 
 
 ## ⭐  Quick Start  ⭐
