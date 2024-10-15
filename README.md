@@ -1,7 +1,7 @@
-<div align="center">
+
 
 ![Streamlit Prophet](streamlit_prophet/references/logo.png)
-A Live Analytics tool for the Karnataka police
+A Live Analytics tool for the  police
 Features:
 
  -Analyzing patrols
